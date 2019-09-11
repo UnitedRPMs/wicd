@@ -87,7 +87,7 @@ Client program for wicd that uses a GTK+ interface.
 %setup -n %{name}-%{commit0}
 
 
-cp -f %{S:3} .
+cp -f %{S:2} .
 cp -f %{S:3} wicd/
 
 # Remove the WHEREAREMYFILES and resetting of ~/.wicd/WHEREAREMYFILES
