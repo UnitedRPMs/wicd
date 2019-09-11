@@ -77,7 +77,7 @@ Summary:   GTK+ client for wicd
 Group:     Applications/Internet
 BuildArch: noarch
 Requires:  %{name}-common = %{version}-%{release}
-Requires:  python3-notify
+#Requires:  python3-notify
 Requires:  pygtk2-libglade >= 2.10
 
 %description gtk
