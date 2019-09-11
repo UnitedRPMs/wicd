@@ -56,7 +56,7 @@ Requires:  logrotate
 Requires:  net-tools
 Requires:  wireless-tools
 Requires:  wpa_supplicant
-Requires:  pygobject2
+Requires:  python3-gobject
 
 %description common
 This package provides the main wicd daemon and the wicd-cli front-end.
@@ -77,7 +77,7 @@ Summary:   GTK+ client for wicd
 Group:     Applications/Internet
 BuildArch: noarch
 Requires:  %{name}-common = %{version}-%{release}
-#Requires:  python3-notify
+Requires:  python3-notify2
 Requires:  pygtk2-libglade >= 2.10
 
 %description gtk
@@ -86,9 +86,10 @@ Client program for wicd that uses a GTK+ interface.
 %prep
 %setup -n %{name}-%{commit0}
 
+sed -i 's|/usr/bin/python|/usr/bin/python3|g' %{S:3}
+cp -f %{S:3} .
 
-cp -f %{S:2} .
-cp -f %{S:3} wicd/
+cp -f %{S:2} wicd/
 
 # Remove the WHEREAREMYFILES and resetting of ~/.wicd/WHEREAREMYFILES
 # This is pointless.  The documentation can just provide WHEREAREMYFILES,
@@ -118,8 +119,6 @@ find . -type f -exec sed -i 's@#!/usr.*python@#!/usr/bin/python3@' {} \;
 
 sed -e "/detection failed/ a\                self.init='init/default/wicd'" \
     -i.orig setup.py
-
-sed -i 's|/usr/bin/python|/usr/bin/python3|g' wpath.py
 
 %build
 rm -f po/ast.po
