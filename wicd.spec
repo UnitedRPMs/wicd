@@ -12,7 +12,7 @@ License:             GPLv2+
 URL:                 https://github.com/zeph/wicd
 Source0:             https://github.com/zeph/wicd/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:             org.wicd.daemon.service
-Source2:             https://git.devuan.org/devuan-packages/wicd/raw/master/vcsinfo.py
+Source2:             https://salsa.debian.org/debian/wicd/raw/master/vcsinfo.py
 Source3:             https://salsa.debian.org/debian/wicd/raw/master/wicd/wpath.py
 
 Patch0:              wicd-1.7.3-remove-WHEREAREMYFILES.patch
@@ -87,9 +87,10 @@ Client program for wicd that uses a GTK+ interface.
 %setup -n %{name}-%{commit0}
 
 sed -i 's|/usr/bin/python|/usr/bin/python3|g' %{S:3}
-cp -f %{S:3} .
+cp -f %{S:2} .
 
-cp -f %{S:2} wicd/
+cp -f %{S:3} .
+cp -f %{S:3} wicd/
 
 # Remove the WHEREAREMYFILES and resetting of ~/.wicd/WHEREAREMYFILES
 # This is pointless.  The documentation can just provide WHEREAREMYFILES,
